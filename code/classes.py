@@ -1,8 +1,8 @@
-from helper import *
+from setup import *
 
 class Marble:
     MARBLES = []
-    MARBLE_RADIUS = 10
+    MARBLE_RADIUS = 20
     def __init__(self, color, pos) -> None:
         self.color = color 
         self.x = pos[0]

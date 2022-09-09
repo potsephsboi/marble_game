@@ -1,10 +1,10 @@
-from helper import *
-
+from setup import *
 
 
 
 def draw():
     WIN.fill(WHITE)
+    WIN.blit(ARROW, (277, 380))   
     for m in Marble.MARBLES:
         m.drawMarble()
     pygame.display.update()
