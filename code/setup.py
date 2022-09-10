@@ -13,7 +13,7 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 pygame.init()
 
-ARROW_LEN = 50
+ARROW_LEN = 80
 
 from classes import Marble
 

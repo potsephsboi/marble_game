@@ -8,10 +8,10 @@ def find_pos(mouse):
     ay = Marble.MARBLES[0].y
     dy = mouse[1] - ay
     dx = mouse[0] - ax
-    print(dx, dy)
-    if dy != 0:
+    if dy > 0:
         angle = math.atan(dx/dy)
-        # print(math.degrees(angle))
         return (ax+ARROW_LEN*math.sin(angle), ay+ARROW_LEN*math.cos(angle))
-
+    elif dy < 0:
+        angle = math.atan(dx/dy)
+        return (ax-ARROW_LEN*math.sin(angle), ay-ARROW_LEN*math.cos(angle))
 
