@@ -20,8 +20,27 @@ def move_marbles():
         m.x += m.vx
         m.y += m.vy
 
-def calc_velocity(mouse, mx, my):
-    vx = (mouse[0] - mx) // 10
-    vy = (mouse[1] - my) // 10
+def marble_out_of_bounds():
+    for m in Marble.FIRED:
+        if not (0 < m.x < WIDTH and 0 < m.y < HEIGHT):
+            Marble.MARBLES.remove(m)
+            Marble.FIRED.remove(m)
 
-    return [vx, vy]
+
+def marble_collision():
+    f = Marble.FIRED[0]
+    for m in Marble.MARBLES:
+        if m not in Marble.FIRED and m is not Marble.Player:
+            m_dist = math.sqrt((m.x-f.x)**2 + (m.y-f.y)**2)
+            if m_dist <= Marble.MARBLE_RADIUS*2:
+                if f.color == m.color:
+                    Marble.FIRED.remove(f)
+                    Marble.MARBLES.remove(f)
+                    Marble.MARBLES.remove(m)
+                else:
+                    Marble.FIRED.remove(f)
+                    Marble.MARBLES.remove(f)
+                    
+                return
+
+               

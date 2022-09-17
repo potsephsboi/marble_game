@@ -16,12 +16,13 @@ def draw(mouse):
     pygame.display.update()
 
 def fire(mouse):
-    vel = calc_velocity(mouse, Marble.Player.x, Marble.Player.y) 
-    Marble.Player.vx, Marble.Player.vy, = vel[0], vel[1] 
-    Marble.FIRED.append(Marble.Player)
+    vx = (mouse[0] - Marble.Player.x) / 10 
+    vy = (mouse[1] - Marble.Player.y) / 10 
+    Marble.Player.vx, Marble.Player.vy, = vx, vy         
+    Marble.FIRED.append(Marble.Player)    
+
     Marble.Player = None
     Marble(COLORS[random.randint(0, len(COLORS)-1)], [(WIDTH/2)-Marble.MARBLE_RADIUS/2, 500], 0, 0, True)
-
 
 def main():
     clock = pygame.time.Clock()
@@ -34,10 +35,13 @@ def main():
                 run = False
                 break
             if event.type == pygame.MOUSEBUTTONUP:
-                fire(pygame.mouse.get_pos())
-                print('fire')
+                if len(Marble.FIRED) < 5:
+                    fire(pygame.mouse.get_pos())
 
         move_marbles()
+        if len(Marble.FIRED) > 0:
+            marble_collision()
+        marble_out_of_bounds()
         draw(pygame.mouse.get_pos())
 
 
