@@ -38,8 +38,8 @@ def marble_collision():
                     Marble.MARBLES.remove(f)
                     Marble.MARBLES.remove(m)
                 else:
-                    Marble.FIRED.remove(f)
-                    Marble.MARBLES.remove(f)
+                    f.y += m.y - f.y + 2 * Marble.MARBLE_RADIUS
+                    f.x = m.x
                     
                 return
 
