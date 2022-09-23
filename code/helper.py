@@ -26,6 +26,15 @@ def marble_out_of_bounds():
             Marble.MARBLES.remove(m)
             Marble.FIRED.remove(m)
 
+def check_game_over():
+    if len(Marble.MARBLES)-1 == 0:
+        return [True, 1]
+    for m in Marble.MARBLES:
+        if m not in Marble.FIRED and m.y > 320 and m is not Marble.Player:
+            return [True, 0]
+    
+    return [False, 0]
+
 
 def marble_collision():
     f = Marble.FIRED[0]

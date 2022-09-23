@@ -12,7 +12,7 @@ def draw(mouse):
     end_pos = find_pos(mouse)
     if start_pos is not None and end_pos is not None:
         pygame.draw.line(WIN, BLACK, start_pos, end_pos, 5)
-
+    pygame.draw.line(WIN, BLACK, (0, 360), (WIDTH, 360), 5)
     pygame.display.update()
 
 def fire(mouse):
@@ -42,6 +42,16 @@ def main():
         if len(Marble.FIRED) > 0:
             marble_collision()
         marble_out_of_bounds()
+        game_status = check_game_over()
+        if game_status[0]:
+            if game_status[1] == 1:
+                print('You won')
+                run = False
+            
+            if game_status[1] == 0:
+                print('You lost')
+                run = False
+
         draw(pygame.mouse.get_pos())
 
 
