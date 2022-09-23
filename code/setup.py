@@ -10,8 +10,8 @@ WHITE = (255, 255, 255)
 COLORS = [BLACK, (124,252,0), (255,0,0), (24, 0, 255), (100, 0, 100)] 
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-
 pygame.init()
+pygame.display.set_caption('SHOOT DEM MARBLES')
 
 ARROW_LEN = 80
 
