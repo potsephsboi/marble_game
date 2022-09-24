@@ -7,7 +7,6 @@ def draw(mouse, show_level, levelid):
     WIN.fill(WHITE)   
     if show_level:
         level_txt = font.render(f'LEVEL {levelid}', True, BLACK, WHITE)
-        
         txt_rect = level_txt.get_rect()
         txt_rect.center = (WIDTH / 2, HEIGHT / 2)
         WIN.blit(level_txt, txt_rect)
@@ -66,13 +65,12 @@ def main():
                 t0 = time.time()
                 pause = True
                 if cur_level > 3:
-                    print('You won')
+                    handle_win()
                     run = False
-
                 setup_game(cur_level)
 
-            if game_status[1] == 0:
-                print('You lost')
+            if game_status[1] == 0 and not pause:
+                print('You lost :(')
                 run = False
 
         draw(pygame.mouse.get_pos(), pause, cur_level)

@@ -35,6 +35,16 @@ def check_game_over():
     
     return [False, 0]
 
+def handle_win():
+    level_txt = font.render('YOU WON', True, BLACK, WHITE)
+    txt_rect = level_txt.get_rect()
+    txt_rect.center = (WIDTH / 2, HEIGHT / 2)
+    WIN.fill(WHITE)
+    for _ in range(1000):
+        WIN.blit(level_txt, txt_rect)
+        pygame.display.update()
+    print('YOU WON\nLESSGO')
+    
 
 def marble_collision():
     f = Marble.FIRED[0]
