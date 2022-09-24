@@ -30,8 +30,6 @@ def setup_game(level):
     Marble.FIRED.clear()
     Marble.Player = None
     Marble(COLORS[random.randint(0, len(COLORS)-1)], [(WIDTH/2)-Marble.MARBLE_RADIUS/2, 500], 0, 0, True)
-    for j in range(level):
-        for i in range(1):
+    for j in range(level+2):
+        for i in range(int(WIDTH/(Marble.MARBLE_RADIUS*2))):
                 Marble(COLORS[random.randint(0, len(COLORS)-1)], [i*(Marble.MARBLE_RADIUS)*2+Marble.MARBLE_RADIUS, j*(Marble.MARBLE_RADIUS)*2+Marble.MARBLE_RADIUS], 0, 0, False)
-
-# int(WIDTH/(Marble.MARBLE_RADIUS*2))
