@@ -52,4 +52,3 @@ def marble_collision():
                     Marble.FIRED.remove(f)
                 return
 
-               

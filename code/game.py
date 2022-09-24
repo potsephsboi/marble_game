@@ -1,10 +1,18 @@
+import time
 from setup import *
 from helper import *
 
 
-def draw(mouse):
+def draw(mouse, show_level, levelid):
     WIN.fill(WHITE)   
+    if show_level:
+        level_txt = font.render(f'LEVEL {levelid}', True, BLACK, WHITE)
+        
+        txt_rect = level_txt.get_rect()
+        txt_rect.center = (WIDTH / 2, HEIGHT / 2)
+        WIN.blit(level_txt, txt_rect)
     
+
     for m in Marble.MARBLES:
         m.drawMarble()
 
@@ -27,6 +35,12 @@ def fire(mouse):
 def main():
     clock = pygame.time.Clock()
     run = True
+    t0 = time.time()
+    pause_time = 2
+    pause = True
+    cur_level = 1
+
+    setup_game(cur_level)
 
     while run:
         clock.tick(30)
@@ -35,24 +49,33 @@ def main():
                 run = False
                 break
             if event.type == pygame.MOUSEBUTTONUP:
-                if len(Marble.FIRED) < 5:
+                if not pause and len(Marble.FIRED) < 5:
                     fire(pygame.mouse.get_pos())
+
+        pause = time.time() - t0 <= pause_time
 
         move_marbles()
         if len(Marble.FIRED) > 0:
             marble_collision()
+
         marble_out_of_bounds()
         game_status = check_game_over()
         if game_status[0]:
             if game_status[1] == 1:
-                print('You won')
-                run = False
-            
+                cur_level += 1
+                t0 = time.time()
+                pause = True
+                if cur_level > 3:
+                    print('You won')
+                    run = False
+
+                setup_game(cur_level)
+
             if game_status[1] == 0:
                 print('You lost')
                 run = False
 
-        draw(pygame.mouse.get_pos())
+        draw(pygame.mouse.get_pos(), pause, cur_level)
 
 
 if __name__ == '__main__':
