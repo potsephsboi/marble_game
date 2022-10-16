@@ -51,7 +51,7 @@ def marble_collision():
     for m in Marble.MARBLES:
         if m not in Marble.FIRED and m is not Marble.Player:
             m_dist = math.sqrt((m.x-f.x)**2 + (m.y-f.y)**2)
-            if m_dist <= Marble.MARBLE_RADIUS*2:
+            if m_dist <= Marble.MARBLE_RADIUS*2 and f.y > m.y:
                 if f.color == m.color:
                     Marble.FIRED.remove(f)
                     Marble.MARBLES.remove(f)

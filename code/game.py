@@ -23,8 +23,8 @@ def draw(mouse, show_level, levelid):
     pygame.display.update()
 
 def fire(mouse):
-    vx = (mouse[0] - Marble.Player.x) / 10 
-    vy = (mouse[1] - Marble.Player.y) / 10 
+    vx = (mouse[0] - Marble.Player.x) / 13 
+    vy = (mouse[1] - Marble.Player.y) / 13 
     Marble.Player.vx, Marble.Player.vy, = vx, vy         
     Marble.FIRED.append(Marble.Player)    
 
